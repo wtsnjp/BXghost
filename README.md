@@ -5,7 +5,7 @@ LaTeX: ghost insertion
 ## System requirements
 
 * TeX format: LaTeX
-* TeX engine: LuaTeX, pTeX, and upTeX
+* TeX engine: LuaTeX, XeTeX, pTeX, upTeX, and ApTeX (pTeX-ng)
 
 ## Usage
 
@@ -26,6 +26,8 @@ This package is distributed under [the MIT license](./LICENSE).
 
 ## Revision History
 
+* Version 0.2.0  ‹2019/09/17›
+  * Add supports for XeTeX and ApTeX (pTeX-ng)
 * Version 0.1.0  ‹2019/09/16›
   * The first public version
   * Add supports for LuaTeX to the original [PXghost](https://gist.github.com/zr-tex8r/4461060) package

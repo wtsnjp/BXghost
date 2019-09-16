@@ -10,7 +10,7 @@
 
 %% package declaration
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bxghost}[2019/09/16 v0.1.0]
+\ProvidesPackage{bxghost}[2019/09/17 v0.2.0]
 
 %% preparations
 \def\bxqgg@pkgname{bxghost}
@@ -25,9 +25,9 @@
   \edef\bxqgg@tmpa{\string#1}\edef\bxqgg@tmpb{\meaning#1}%
   \ifx\bxqgg@tmpa\bxqgg@tmpb #2\fi}
 \chardef\bxqgg@engine=0 % other TeX
-\bxqgg@next\kanjiskip    {\chardef\bxqgg@engine=1 }% pTeX (or upTeX)
+\bxqgg@next\kanjiskip    {\chardef\bxqgg@engine=1 }% (u)pTeX (or ApTeX)
 \bxqgg@next\luatexversion{\chardef\bxqgg@engine=2 }% LuaTeX
-%\bxqgg@next\XeTeXversion {\chardef\bxqgg@engine=3 }% XeTeX
+\bxqgg@next\XeTeXversion {\chardef\bxqgg@engine=3 }% XeTeX
 
 %--------------------------------------- not supported engine
 
@@ -41,9 +41,12 @@
 % use an arbitrary font available in T1 encoding
 \font\bxqgg@TI=ec-lmr10 at 1.23456pt
 \chardef\bxqgg@cwm=23 % compwordmark (in T1)
+
+% allow xkanjiskip around
+% Note: for XeTeX, xeCJK will handle nicely. We have nothing to do :)
 \ifcase\bxqgg@engine
 \or  % pTeX
-  \xspcode\bxqgg@cwm=3 % allow xkanjiskip around
+  \xspcode\bxqgg@cwm=3\relax
 \or  % LuaTeX
   \ltjsetparameter{alxspmode={\bxqgg@cwm,3}}
 \fi
@@ -64,18 +67,18 @@
 
 %% \bxqgg@fwsp: a zenkaku space (U+3000)
 \begingroup
-  \ifcase\bxqgg@engine
-  \or  % pTeX
+  \ifnum\bxqgg@engine=\@ne  % pTeX
     \kansujichar\@ne=\jis"2121\relax
-  \or  % LuaTeX
-    \ltjsetparameter{kansujichar={\@ne,\jis"2121}}
+    \xdef\bxqgg@fwsp{\kansuji\@ne}
+  \else  % others
+    \lccode`\Z="3000\relax
+    \lowercase{\xdef\bxqgg@fwsp{Z}}
   \fi
-  \xdef\bxqgg@fwsp{\kansuji\@ne}
 \endgroup
 
 %% \bxqgg@kern@m@ne@zw: a negative zenkaku width kern
 \ifnum\bxqgg@engine=\@ne
-  % (u)pTeX have the unit `zw'
+  % pTeX knows the unit `zw'
   \def\bxqgg@kern@m@ne@zw{\kern-1zw\relax}
 \else
   % for other engines, we use \zw instead
