@@ -7,14 +7,14 @@ LaTeX: ghost insertion for proper xkanjiskip
 * TeX format: LaTeX
 * TeX engine: LuaTeX, XeTeX, pTeX, upTeX, and ApTeX (pTeX-ng)
 
-Since this package is intended to create documents in Japanese, it assumes appropriate classes and/or packages are loaded in some engines (e.g., LuaTeX-ja for LuaTeX and bxjscls for XeTeX). BXghost does not load any external packages automatically.
+Since this package is intended to be used for creating documents in Japanese, it assumes appropriate classes and/or packages are loaded in some engines (e.g., LuaTeX-ja for LuaTeX and bxjscls for XeTeX). BXghost does not load any external packages automatically.
 
 ## Usage
 
 This package provides following commands:
 
 * `\eghostguarded{<text>}` inserts *Europian ghost* (invisible and zero-width alphabets) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
-* `\jghostguarded{<text>}` inserts *Japanese ghost* (invisible and zero-width Kanji) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
+* `\jghostguarded{<text>}` inserts *Japanese ghost* (invisible and zero-width Japanese characters) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
 
 ## Acknowledgements
 
