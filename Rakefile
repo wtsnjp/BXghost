@@ -4,7 +4,7 @@ require 'pathname'
 
 # basics
 PKG_NAME = "bxghost"
-PKG_VERSION = "0.2.0"
+PKG_VERSION = "0.3.0"
 PKG_FULL = "#{PKG_NAME}-#{PKG_VERSION}"
 
 # directories

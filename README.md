@@ -13,8 +13,12 @@ Since this package is intended to be used for creating documents in Japanese, it
 
 This package provides following commands:
 
-* `\eghostguarded{<text>}` inserts *Europian ghost* (invisible and zero-width alphabets) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
+* `\eghostguarded{<text>}` inserts *European ghost* (invisible and zero-width alphabets) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
 * `\jghostguarded{<text>}` inserts *Japanese ghost* (invisible and zero-width Japanese characters) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
+
+In addition, the following package option is available:
+
+* `verb` patches the `\verb` command of LaTeX to be guarded by European ghost.
 
 ## Acknowledgements
 
@@ -26,6 +30,8 @@ This package is distributed under [the MIT license](./LICENSE).
 
 ## Revision History
 
+* Version 0.3.0  ‹2020/01/31›
+  * Add the `verb` option
 * Version 0.2.0  ‹2019/09/17›
   * Add supports for XeTeX and ApTeX (pTeX-ng)
 * Version 0.1.0  ‹2019/09/16›

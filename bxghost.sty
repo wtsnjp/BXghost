@@ -10,7 +10,7 @@
 
 %% package declaration
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bxghost}[2019/09/17 v0.2.0]
+\ProvidesPackage{bxghost}[2020/01/31 v0.3.0]
 
 %% preparations
 \def\bxqgg@pkgname{bxghost}
@@ -34,6 +34,12 @@
   \expandafter\endinput
 \fi
 
+%--------------------------------------- the verb option
+
+\newif\ifbxqgg@verb \bxqgg@verbfalse
+\DeclareOption{verb}{\bxqgg@verbtrue}
+\ProcessOptions\relax
+
 %--------------------------------------- eghostguarded
 
 % use an arbitrary font available in T1 encoding
@@ -56,10 +62,16 @@
   \fi
 }
 \def\bxqgg@eghostguarded@a#1{%
-  {\bxqgg@TI\bxqgg@cwm}%
-  #1%
-  {\bxqgg@TI\bxqgg@cwm}%
-}
+  \bxqgg@eghost #1\bxqgg@eghost}
+\def\bxqgg@eghost{\bgroup
+  \bxqgg@TI\bxqgg@cwm\egroup}
+
+% patch \verb
+\ifbxqgg@verb
+  \edef\verb{\noexpand\bxqgg@eghost\unexpanded\expandafter{\verb}}
+  \edef\verb@egroup{%
+    \unexpanded\expandafter{\verb@egroup}\noexpand\bxqgg@eghost}
+\fi
 
 %--------------------------------------- jghostguarded
 
