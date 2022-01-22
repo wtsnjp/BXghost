@@ -1,7 +1,7 @@
 %%
 %% This is file 'bxghost.sty'.
 %%
-%% Copyright 2019 Takuto ASAKURA (wtsnjp)
+%% Copyright 2019-2022 Takuto ASAKURA (wtsnjp)
 %%   GitHub:   https://github.com/wtsnjp
 %%   Twitter:  @wtsnjp
 %%
@@ -10,7 +10,7 @@
 
 %% package declaration
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bxghost}[2020/01/31 v0.3.0]
+\ProvidesPackage{bxghost}[2022/01/22 v0.3.1]
 
 %% preparations
 \def\bxqgg@pkgname{bxghost}
@@ -23,9 +23,10 @@
   \edef\bxqgg@tmpa{\string#1}\edef\bxqgg@tmpb{\meaning#1}%
   \ifx\bxqgg@tmpa\bxqgg@tmpb #2\fi}
 \chardef\bxqgg@engine=0 % other TeX
-\bxqgg@next\kanjiskip    {\chardef\bxqgg@engine=1 }% (u)pTeX (or ApTeX)
-\bxqgg@next\luatexversion{\chardef\bxqgg@engine=2 }% LuaTeX
-\bxqgg@next\XeTeXversion {\chardef\bxqgg@engine=3 }% XeTeX
+\bxqgg@next\kanjiskip     {\chardef\bxqgg@engine=1 }% pTeX
+\bxqgg@next\enablecjktoken{\chardef\bxqgg@engine=2 }% upTeX
+\bxqgg@next\luatexversion {\chardef\bxqgg@engine=3 }% LuaTeX
+\bxqgg@next\XeTeXversion  {\chardef\bxqgg@engine=4 }% XeTeX
 
 %--------------------------------------- not supported engine
 
@@ -50,6 +51,8 @@
 % Note: for XeTeX, xeCJK will handle nicely. We have nothing to do :)
 \ifcase\bxqgg@engine
 \or  % pTeX
+  \xspcode\bxqgg@cwm=3\relax
+\or  % upTeX
   \xspcode\bxqgg@cwm=3\relax
 \or  % LuaTeX
   \ltjsetparameter{alxspmode={\bxqgg@cwm,3}}
@@ -77,7 +80,7 @@
 
 %% \bxqgg@fwsp: a zenkaku space (U+3000)
 \begingroup
-  \ifnum\bxqgg@engine=\@ne  % pTeX
+  \ifnum\bxqgg@engine<\thr@@  % (u)pTeX
     \kansujichar\@ne=\jis"2121\relax
     \xdef\bxqgg@fwsp{\kansuji\@ne}
   \else  % others
@@ -86,9 +89,27 @@
   \fi
 \endgroup
 
+% make sure to use a font whose zenkaku space is class zero
+\ifnum\bxqgg@engine<\thr@@
+  \ifnum\bxqgg@engine=\@ne  % pTeX
+    \DeclareFontFamily{JY1}{bxqgg}{}
+    \DeclareFontFamily{JT1}{bxqgg}{}
+    \DeclareFontShape{JY1}{bxqgg}{m}{n}{<->s*[0.961]jis}{}
+    \DeclareFontShape{JT1}{bxqgg}{m}{n}{<->s*[0.961]tmin10}{}
+  \else  % upTeX
+    \DeclareFontFamily{JY2}{bxqgg}{}
+    \DeclareFontFamily{JT2}{bxqgg}{}
+    \DeclareFontShape{JY2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-h}{}
+    \DeclareFontShape{JT2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-v}{}
+  \fi
+  \def\bxqgg@jafont{\usekanji{\k@encoding}{bxqgg}{m}{n}}
+\else  % others
+  \let\bxqgg@jafont\relax
+\fi
+
 %% \bxqgg@kern@m@ne@zw: a negative zenkaku width kern
-\ifnum\bxqgg@engine=\@ne
-  % pTeX knows the unit `zw'
+\ifnum\bxqgg@engine<\thr@@
+  % (u)pTeX knows the unit `zw'
   \def\bxqgg@kern@m@ne@zw{\kern-1zw\relax}
 \else
   % for other engines, we use \zw instead
@@ -102,9 +123,15 @@
   \fi
 }
 \edef\bxqgg@jghostguarded@a#1{%
-  \bxqgg@fwsp\bxqgg@kern@m@ne@zw
+  \bgroup
+    \noexpand\bxqgg@jafont
+    \bxqgg@fwsp\bxqgg@kern@m@ne@zw
+  \egroup
   #1%
-  \bxqgg@kern@m@ne@zw\bxqgg@fwsp
+  \bgroup
+    \noexpand\bxqgg@jafont
+    \bxqgg@kern@m@ne@zw\bxqgg@fwsp
+  \egroup
 }
 
 %--------------------------------------- all done
