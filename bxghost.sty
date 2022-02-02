@@ -90,21 +90,27 @@
 \endgroup
 
 % make sure to use a font whose zenkaku space is class zero
-\ifnum\bxqgg@engine<\thr@@
-  \ifnum\bxqgg@engine=\@ne  % pTeX
-    \DeclareFontFamily{JY1}{bxqgg}{}
-    \DeclareFontFamily{JT1}{bxqgg}{}
-    \DeclareFontShape{JY1}{bxqgg}{m}{n}{<->s*[0.961]jis}{}
-    \DeclareFontShape{JT1}{bxqgg}{m}{n}{<->s*[0.961]tmin10}{}
-  \else  % upTeX
-    \DeclareFontFamily{JY2}{bxqgg}{}
-    \DeclareFontFamily{JT2}{bxqgg}{}
-    \DeclareFontShape{JY2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-h}{}
-    \DeclareFontShape{JT2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-v}{}
-  \fi
+\let\bxqgg@jafont\relax
+
+\ifcase\bxqgg@engine
+\or  % pTeX
+  \DeclareFontFamily{JY1}{bxqgg}{}
+  \DeclareFontFamily{JT1}{bxqgg}{}
+  \DeclareFontShape{JY1}{bxqgg}{m}{n}{<->s*[0.961]jis}{}
+  \DeclareFontShape{JT1}{bxqgg}{m}{n}{<->s*[0.961]tmin10}{}
   \def\bxqgg@jafont{\usekanji{\k@encoding}{bxqgg}{m}{n}}
-\else  % others
-  \let\bxqgg@jafont\relax
+\or  % upTeX
+  \DeclareFontFamily{JY2}{bxqgg}{}
+  \DeclareFontFamily{JT2}{bxqgg}{}
+  \DeclareFontShape{JY2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-h}{}
+  \DeclareFontShape{JT2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-v}{}
+  \def\bxqgg@jafont{\usekanji{\k@encoding}{bxqgg}{m}{n}}
+\or  % LuaTeX
+  \DeclareKanjiFamily{JY3}{bxqgg}{}
+  \DeclareKanjiFamily{JT3}{bxqgg}{}
+  \DeclareFontShape{JY3}{bxqgg}{m}{n}{<->s*[0.961]\ltj@stdmcfont:jfm=ujis}{}
+  \DeclareFontShape{JT3}{bxqgg}{m}{n}{<->s*[0.961]\ltj@stdmcfont:jfm=tmin}{}
+  \def\bxqgg@jafont{\usekanji{\k@encoding}{bxqgg}{m}{n}}
 \fi
 
 %% \bxqgg@kern@m@ne@zw: a negative zenkaku width kern
