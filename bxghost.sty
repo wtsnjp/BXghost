@@ -55,6 +55,7 @@
 \or  % upTeX
   \xspcode\bxqgg@cwm=3\relax
 \or  % LuaTeX
+  \RequirePackage{luatexja,luatexja-adjust}%
   \ltjsetparameter{alxspmode={\bxqgg@cwm,3}}
 \fi
 
@@ -105,12 +106,6 @@
   \DeclareFontShape{JY2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-h}{}
   \DeclareFontShape{JT2}{bxqgg}{m}{n}{<->s*[0.92469]upjisr-v}{}
   \def\bxqgg@jafont{\usekanji{\k@encoding}{bxqgg}{m}{n}}
-\or  % LuaTeX
-  \DeclareKanjiFamily{JY3}{bxqgg}{}
-  \DeclareKanjiFamily{JT3}{bxqgg}{}
-  \DeclareFontShape{JY3}{bxqgg}{m}{n}{<->s*[0.961]\ltj@stdmcfont:jfm=ujis}{}
-  \DeclareFontShape{JT3}{bxqgg}{m}{n}{<->s*[0.961]\ltj@stdmcfont:jfm=tmin}{}
-  \def\bxqgg@jafont{\usekanji{\k@encoding}{bxqgg}{m}{n}}
 \fi
 
 %% \bxqgg@kern@m@ne@zw: a negative zenkaku width kern
@@ -139,6 +134,13 @@
     \bxqgg@kern@m@ne@zw\bxqgg@fwsp
   \egroup
 }
+
+% better definition for LuaTeX-ja (20220207.0 or later)
+\ifnum\bxqgg@engine=\thr@@  % LuaTeX
+  \ifx\ltjghostjachar\@undefined\else
+    \def\bxqgg@jghostguarded@a#1{\ltjghostjachar #1\ltjghostjachar}
+  \fi
+\fi
 
 %--------------------------------------- all done
 \endinput

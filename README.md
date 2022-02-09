@@ -6,8 +6,9 @@ LaTeX: ghost insertion for proper xkanjiskip
 
 * TeX format: LaTeX
 * TeX engine: LuaTeX, XeTeX, pTeX, upTeX, and ApTeX (pTeX-ng)
+* LuaTeX-ja is required in LuaTeX
 
-Since this package is intended to be used for creating documents in Japanese, it assumes appropriate classes and/or packages are loaded in some engines (e.g., LuaTeX-ja for LuaTeX and bxjscls for XeTeX). BXghost does not load any external packages automatically.
+Since this package is intended to be used for creating documents in Japanese, it assumes appropriate classes and/or packages are loaded in some engines (e.g., LuaTeX-ja for LuaTeX and bxjscls for XeTeX).
 
 ## Usage
 
