@@ -32,6 +32,9 @@ This package is distributed under [the MIT license](./LICENSE).
 
 ## Revision History
 
+* Version 0.4.0  ‹2022/02/12›
+  * More general implementation for `\jghostguarded`
+  * Add the `noverb` option
 * Version 0.3.0  ‹2020/01/31›
   * Add the `verb` option
 * Version 0.2.0  ‹2019/09/17›
