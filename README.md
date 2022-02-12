@@ -20,7 +20,7 @@ This package provides following commands:
 In addition, the following package options are available:
 
 * `verb` patches the `\verb` command of LaTeX to be guarded by European ghost.
-* `noverb` disables the `verb` feature.
+* `noverb` disables the `verb` feature. (default)
 
 ## Acknowledgements
 
