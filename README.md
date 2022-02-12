@@ -17,9 +17,10 @@ This package provides following commands:
 * `\eghostguarded{<text>}` inserts *European ghost* (invisible and zero-width alphabets) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
 * `\jghostguarded{<text>}` inserts *Japanese ghost* (invisible and zero-width Japanese characters) before and after the `<text>`. In math mode, it outputs only `<text>` without the ghosts.
 
-In addition, the following package option is available:
+In addition, the following package options are available:
 
 * `verb` patches the `\verb` command of LaTeX to be guarded by European ghost.
+* `noverb` disables the `verb` feature.
 
 ## Acknowledgements
 
