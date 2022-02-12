@@ -35,6 +35,14 @@
   \expandafter\endinput
 \fi
 
+%--------------------------------------- load LuaTeX-ja
+
+\ifnum\bxqgg@engine=\thr@@
+  \RequirePackage{luatexja}
+  \@ifpackageloaded{luatexja-adjust}{}{%
+    \RequirePackage{luatexja-adjust}\ltjdisableadjust}
+\fi
+
 %--------------------------------------- the verb option
 
 \newif\ifbxqgg@verb \bxqgg@verbfalse
@@ -55,7 +63,6 @@
 \or  % upTeX
   \xspcode\bxqgg@cwm=3\relax
 \or  % LuaTeX
-  \RequirePackage{luatexja,luatexja-adjust}%
   \ltjsetparameter{alxspmode={\bxqgg@cwm,3}}
 \fi
 
@@ -135,10 +142,12 @@
   \egroup
 }
 
-% better definition for LuaTeX-ja (20220207.0 or later)
+% better definition for LuaTeX-ja (20220211.0 or later)
 \ifnum\bxqgg@engine=\thr@@  % LuaTeX
-  \ifx\ltjghostjachar\@undefined\else
-    \def\bxqgg@jghostguarded@a#1{\ltjghostjachar #1\ltjghostjachar}
+  \ifx\ltjghostbeforejachar\@undefined\else
+    \def\bxqgg@jghostguarded@a#1{%
+      \ltjghostbeforejachar #1\ltjghostafterjachar
+    }
   \fi
 \fi
 
