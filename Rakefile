@@ -4,13 +4,13 @@ require 'pathname'
 
 # basics
 PKG_NAME = "bxghost"
-PKG_VERSION = "0.3.0"
+PKG_VERSION = "0.4.0"
 PKG_FULL = "#{PKG_NAME}-#{PKG_VERSION}"
 
 # directories
 REPO_ROOT = Pathname.pwd
-TMP_DIR = REPO_ROOT + "tmp"
-TARGET_DIR = TMP_DIR + "#{PKG_FULL}"
+TMP_DIR = REPO_ROOT / "tmp"
+TARGET_DIR = TMP_DIR / "#{PKG_FULL}"
 
 # cleaning
 CLEAN.include([
@@ -29,7 +29,7 @@ task :archive do
 
   # copy files to the target dir
   pkg_files = ["LICENSE", "README.md", "#{PKG_NAME}.sty"]
-  cp_r pkg_files, TARGET_DIR
+  cp pkg_files, TARGET_DIR
 
   # create zip archive
   cd TMP_DIR
