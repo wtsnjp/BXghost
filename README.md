@@ -30,7 +30,7 @@ To use the function of this package in your package, a library version is availa
 \RequirePackage{bxghost-lib}
 ```
 
-This provides all the commands defined in the package but does not have any package option to prevent the problem of option crashes.
+This provides all the commands defined in the package but does not have any package option to prevent the problem of option clashes.
 
 ## Acknowledgements
 
