@@ -2,7 +2,7 @@
 
 LaTeX: ghost insertion for proper xkanjiskip
 
-## System requirements
+## Requirements
 
 * TeX format: LaTeX
 * TeX engine: LuaTeX, XeTeX, pTeX, upTeX, and ApTeX (pTeX-ng)
@@ -22,6 +22,16 @@ In addition, the following package options are available:
 * `verb` patches the `\verb` command of LaTeX to be guarded by European ghost.
 * `noverb` disables the `verb` feature. (default)
 
+### For package authors
+
+To use the function of this package in your package, a library version is available:
+
+```tex
+\RequirePackage{bxghost-lib}
+```
+
+This provides all the commands defined in the package but does not have any package option to prevent the problem of option crashes.
+
 ## Acknowledgements
 
 The logic and style of the code in this package is greatly inspired by [Package PXghost](https://gist.github.com/zr-tex8r/4461060) and various packages in [the BX series](http://zrbabbler.sp.land.to/package.html#ssec-bx). I would like to thank the author of the packages, Dr. Takayuki YATO (aka. [ZR](https://github.com/zr-tex8r)).
@@ -32,6 +42,8 @@ This package is distributed under [the MIT license](./LICENSE).
 
 ## Revision History
 
+* Version 0.5.0  ‹2022/05/20›
+  * Provide `bxghost-lib` for internal use from other packages
 * Version 0.4.0  ‹2022/02/12›
   * More general implementation for `\jghostguarded`
   * Add the `noverb` option
