@@ -160,3 +160,5 @@ TSWLatexianTemp*
 
 # local dirs
 test/
+tmp/
+*.zip

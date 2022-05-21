@@ -4,7 +4,7 @@ require 'pathname'
 
 # basics
 PKG_NAME = "bxghost"
-PKG_VERSION = "0.4.0"
+PKG_VERSION = "0.5.0"
 PKG_FULL = "#{PKG_NAME}-#{PKG_VERSION}"
 
 # directories
@@ -28,7 +28,7 @@ task :archive do
   mkdir_p TARGET_DIR
 
   # copy files to the target dir
-  pkg_files = ["LICENSE", "README.md", "#{PKG_NAME}.sty"]
+  pkg_files = ["LICENSE", "README.md"] + Dir.glob("*.sty")
   cp pkg_files, TARGET_DIR
 
   # create zip archive
