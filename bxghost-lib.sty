@@ -1,7 +1,7 @@
 %%
 %% This is file 'bxghost-lib.sty'.
 %%
-%% Copyright 2019-2022 Takuto ASAKURA (wtsnjp)
+%% Copyright 2019-2023 Takuto ASAKURA (wtsnjp)
 %%   GitHub:   https://github.com/wtsnjp
 %%   Twitter:  @wtsnjp
 %%
@@ -23,10 +23,14 @@
   \edef\bxqgg@tmpa{\string#1}\edef\bxqgg@tmpb{\meaning#1}%
   \ifx\bxqgg@tmpa\bxqgg@tmpb #2\fi}
 \chardef\bxqgg@engine=0 % other TeX
-\bxqgg@next\kanjiskip     {\chardef\bxqgg@engine=1 }% pTeX
-\bxqgg@next\enablecjktoken{\chardef\bxqgg@engine=2 }% upTeX
-\bxqgg@next\luatexversion {\chardef\bxqgg@engine=3 }% LuaTeX
-\bxqgg@next\XeTeXversion  {\chardef\bxqgg@engine=4 }% XeTeX
+\bxqgg@next\kanjiskip{%
+  \ifnum\jis"2121="3000
+    \chardef\bxqgg@engine=2 % upTeX
+  \else
+    \chardef\bxqgg@engine=1 % pTeX
+  \fi}
+\bxqgg@next\luatexversion{\chardef\bxqgg@engine=3 }% LuaTeX
+\bxqgg@next\XeTeXversion {\chardef\bxqgg@engine=4 }% XeTeX
 
 %--------------------------------------- not supported engine
 
