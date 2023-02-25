@@ -34,7 +34,7 @@ This provides all the commands defined in the package but does not have any pack
 
 ## Acknowledgements
 
-The logic and style of the code in this package is greatly inspired by [Package PXghost](https://gist.github.com/zr-tex8r/4461060) and various packages in [the BX series](http://zrbabbler.sp.land.to/package.html#ssec-bx). I would like to thank the author of the packages, Dr. Takayuki YATO (aka. [ZR](https://github.com/zr-tex8r)).
+The logic and style of the code in this package is greatly inspired by [Package PXghost](https://gist.github.com/zr-tex8r/4461060) and various packages in [the BX series](http://zrbabbler.sp.land.to/package.html#ssec-bx). I would like to thank the author of the packages, Dr. Takayuki Yato (aka. [ZR](https://github.com/zr-tex8r)).
 
 ## License
 
@@ -42,6 +42,8 @@ This package is distributed under [the MIT license](./LICENSE).
 
 ## Revision History
 
+* Version 0.5.1  ‹2023/02/26›
+  * Add support for e-upTeX based pLaTeX
 * Version 0.5.0  ‹2022/05/20›
   * Provide `bxghost-lib` for internal use from other packages
 * Version 0.4.0  ‹2022/02/12›
@@ -57,4 +59,4 @@ This package is distributed under [the MIT license](./LICENSE).
 
 ---
 
-Takuto ASAKURA ([wtsnjp](https://twitter.com/wtsnjp))
+Takuto Asakura ([wtsnjp](https://twitter.com/wtsnjp))
