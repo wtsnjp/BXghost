@@ -2,15 +2,14 @@
 require 'rake/clean'
 require 'pathname'
 
-# basics
+# constants
 PKG_NAME = "bxghost"
 PKG_VERSION = "0.5.1"
-PKG_FULL = "#{PKG_NAME}-#{PKG_VERSION}"
 
-# dir and file
 BASE_DIR = Pathname.pwd
 TMP_DIR = BASE_DIR / "tmp"
 TARGET_DIR = TMP_DIR / PKG_NAME
+
 ZIP_NAME = "#{PKG_NAME}-#{PKG_VERSION}.zip"
 
 # cleaning
